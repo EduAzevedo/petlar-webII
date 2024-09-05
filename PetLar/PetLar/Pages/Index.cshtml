@@ -1,0 +1,348 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "PETLAR - Bem-vindo ao seu portal de adoção!";
+}
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            margin-left: 0;
+            position: relative;
+        }
+
+        .container {
+            padding-left: 0;
+            padding-right: 0;
+            margin-left: 0;
+            margin-right: 0;
+            margin: 0;
+        }
+
+        .hero-section {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            padding: 0;
+            margin: 0;
+            background: url("/images/LandingPage.png") no-repeat;
+            color: white;
+            min-height: 75vh;
+            width: 100vw;
+        }
+
+        .hero-content {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            max-width: 50%;
+            padding: 20px;
+            box-sizing: border-box;
+            margin-left: 40px;
+        }
+
+        .hero-section .hero-content .petlar-logo {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            margin-bottom: 20px;
+            gap: 5px;
+        }
+
+            .hero-section .hero-content .petlar-logo h1 {
+                margin: 0;
+                font-size: 1.8rem;
+            }
+
+            .hero-section .hero-content .petlar-logo img {
+                width: 60px;
+                height: 60px;
+            }
+
+        .hero-content h2 {
+            font-size: 36px;
+            font-weight: bold;
+        }
+
+        .hero-content p {
+            max-width: 20vw;
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        .btn-custom, .btn-custom-secondary {
+            width: 25vw;
+            border-radius: 50px;
+            padding: 10px 20px;
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .btn-custom {
+            background-color: #FE7370;
+            color: white;
+        }
+
+        .btn-custom-secondary {
+            background-color: #fff;
+            color: black;
+        }
+
+        .buttons-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+            .buttons-container .or-text {
+                font-weight: bold;
+                margin: 10px 0;
+            }
+
+        .hero-content .info-text {
+            font-size: 14px;
+            color: #C9C9C9;
+        }
+
+        .card {
+            border-radius: 15px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+            .card:hover {
+                transform: scale(1.05);
+                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            }
+
+        .carousel-item {
+            text-align: center;
+            font-size: 16px;
+            color: #343a40;
+            background-color: #e9ecef;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .carousel-control-prev-icon, .carousel-control-next-icon {
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 50%;
+        }
+
+        .carousel-control-prev, .carousel-control-next {
+            width: 5%;
+        }
+
+        .login-section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.5);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 1050;
+            display: none;
+        }
+
+        .login-content {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+        }
+
+            .login-content h2 {
+                margin-bottom: 20px;
+                font-size: 24px;
+                font-weight: bold;
+                text-align: center;
+            }
+
+        .btn-custom {
+            background-color: #FE7370;
+            color: white;
+            border-radius: 16px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .btn-custom-secondary {
+            background-color: #fff;
+            color: #FE7370;
+            border-radius: 16px;
+            border: 1px solid #FE7370;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-control {
+            border-radius: 50px;
+            padding: 15px;
+            font-size: 16px;
+        }
+
+        .login-options {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+            .login-options a {
+                color: #FE7370;
+                text-decoration: none;
+                font-weight: bold;
+            }
+
+                .login-options a:hover {
+                    text-decoration: underline;
+                }
+
+        .btn-block {
+            width: 100%;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .login-btn {
+            position: absolute;
+            width: 10rem;
+            top: 20px;
+            right: 20px;
+            padding: 8px 12px;
+            font-size: 14px;
+            font-weight: bold;
+            border-radius: 12px;
+            background-color: #FE7370;
+            color: white;
+            border: none;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s; 
+        }
+
+        .login-btn:hover {
+            background-color: white;
+            color: #FE7370;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="hero-section">
+        <div class="hero-content">
+            <div class="petlar-logo">
+                <img src="/images/logo-petlar.png" alt="Logo">
+                <h1>PETLAR</h1>
+            </div>
+
+            <h2>Adote um Amigo Peludo</h2>
+            <p>Seja parte da mudança! Dê amor e um lar para um animalzinho que precisa. Nossa missão é conectar você com o companheiro perfeito.</p>
+
+            <div class="buttons-container">
+                <a class="btn btn-custom" href="/adopt" role="button">ENCONTRE SEU NOVO AMIGO</a>
+                <div class="or-text">OU</div>
+                <a class="btn btn-custom-secondary" href="/register-ngo" role="button">CADASTRAR UMA ONG</a>
+            </div>
+
+            <p class="info-text">*O processo de cadastro de ONGS acontece com um de nossos administradores</p>
+        </div>
+    </div>
+
+    <div class="container my-5">
+        <h2 class="text-center mb-4">Nossos Serviços</h2>
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="card shadow-sm">
+                    <img src="https://via.placeholder.com/400x200" class="card-img-top" alt="Adoção Responsável">
+                    <div class="card-body">
+                        <h5 class="card-title">Adoção Responsável</h5>
+                        <p class="card-text">Encontre o pet ideal para a sua família em nosso portal de adoção.</p>
+                        <a href="/adopt" class="btn btn-custom">Saiba Mais</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card shadow-sm">
+                    <img src="https://via.placeholder.com/400x200" class="card-img-top" alt="Doação de Pets">
+                    <div class="card-body">
+                        <h5 class="card-title">Doação de Pets</h5>
+                        <p class="card-text">Não pode mais cuidar do seu pet? Encontre um novo lar para ele com a nossa ajuda.</p>
+                        <a href="/donate" class="btn btn-custom-secondary">Saiba Mais</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card shadow-sm">
+                    <img src="https://via.placeholder.com/400x200" class="card-img-top" alt="Parcerias">
+                    <div class="card-body">
+                        <h5 class="card-title">Parcerias</h5>
+                        <p class="card-text">Saiba como sua ONG pode se beneficiar de parcerias e colaborações.</p>
+                        <a href="/partners" class="btn btn-custom">Saiba Mais</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Botão de Login -->
+    <button id="loginButton" class="btn btn-custom login-btn">Login</button>
+
+    <!-- Modal de Login -->
+    <div class="login-section" id="loginModal">
+        <div class="login-content">
+            <h2>Login</h2>
+            <form method="post" asp-page-handler="Login">
+                <div class="form-group">
+                    <label for="email">E-mail</label>
+                    <input type="email" id="email" name="Email" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Senha</label>
+                    <input type="password" id="password" name="Password" class="form-control" required>
+                </div>
+                <button type="submit" class="btn btn-custom btn-block">Entrar</button>
+            </form>
+
+            <div class="login-options">
+                <p>Não tem uma conta? <a href="/account/register">Cadastre-se</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.getElementById('loginButton').addEventListener('click', function () {
+            document.getElementById('loginModal').style.display = 'flex';
+        });
+
+        document.getElementById('loginModal').addEventListener('click', function (event) {
+            if (event.target === this) {
+                this.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>

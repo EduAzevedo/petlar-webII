@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using PetLar.Data;
+using PetLar.Models;
 using System.ComponentModel.DataAnnotations;
 
 namespace PetLar.Pages.Account
@@ -9,38 +11,55 @@ namespace PetLar.Pages.Account
         [BindProperty]
         public RegisterViewModel RegisterViewModel { get; set; }
 
+        public readonly ApplicationDbContext _context;
+
+        [BindProperty]
+        public User user { get; set; } = new User();
+
+        public RegisterModel(ApplicationDbContext context)
+        {
+            _context = context;
+        }
+
         public void OnGet()
         {
-            // Método chamado quando a página é carregada com uma requisição GET
+            // Mï¿½todo chamado quando a pï¿½gina ï¿½ carregada com uma requisiï¿½ï¿½o GET
         }
 
-        public IActionResult OnPost()
+        public async Task<IActionResult> OnPostAsync()
         {
-            if (!ModelState.IsValid)
+            var usuarioNovo = new User
             {
-                return Page();
-            }
+                UserName = user.UserName,
+                Email = user.Email,
+                Password = user.Password
+            };
 
-            // Adicione a lógica para o registro do usuário aqui
-            // Por exemplo: salvar os dados em um banco de dados, enviar um e-mail, etc.
+            _context.Users.Add(usuarioNovo);
+            await _context.SaveChangesAsync();
 
-            return RedirectToPage("/Index"); // Redireciona para a página inicial após o registro
+            return RedirectToPage("/Index");
         }
+
     }
 
     public class RegisterViewModel
     {
+
+        [Required]
+        public string UserName { get; set; } = string.Empty;
+
         [Required]
         [EmailAddress]
-        public string Email { get; set; }
+        public string Email { get; set; } = string.Empty;
 
         [Required]
         [DataType(DataType.Password)]
-        public string Password { get; set; }
+        public string Password { get; set; } = string.Empty;
 
         [Required]
         [DataType(DataType.Password)]
-        [Compare("Password", ErrorMessage = "As senhas não coincidem.")]
-        public string ConfirmPassword { get; set; }
+        [Compare("Password", ErrorMessage = "As senhas nï¿½o coincidem.")]
+        public string ConfirmPassword { get; set; } = string.Empty;
     }
 }

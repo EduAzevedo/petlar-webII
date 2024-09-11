@@ -1,7 +1,7 @@
 @page
 @model RegisterModel
 @{
-    ViewData["Title"] = "PETLAR - Registro de Usuário";
+    ViewData["Title"] = "PETLAR - Registro de Usuï¿½rio";
 }
 
 <!DOCTYPE html>
@@ -85,27 +85,27 @@
 
     <div class="container">
         <div class="form-container">
-            <h2 class="form-title text-center">Registro de Usuário</h2>
+            <h2 class="form-title text-center">Registro de Usuï¿½rio</h2>
 
-            <form action="/register" method="post">
+            <form method="post">
                 <div class="mb-3">
-                    <label for="name" class="form-label">Nome</label>
-                    <input type="text" id="name" name="name" class="form-control" required>
+                    <label asp-for="user.UserName" class="form-label">Nome</label>
+                    <input type="text" id="name" asp-for="user.UserName"x class="form-control" required>
                 </div>
 
                 <div class="mb-3">
-                    <label for="email" class="form-label">E-mail</label>
-                    <input type="email" id="email" name="email" class="form-control" required>
+                    <label asp-for="user.Email" class="form-label">E-mail</label>
+                    <input type="email" id="email" asp-for="user.Email" class="form-control" required>
                 </div>
 
                 <div class="mb-3">
-                    <label for="password" class="form-label">Senha</label>
-                    <input type="password" id="password" name="password" class="form-control" required>
+                    <label asp-for="user.Password" class="form-label">Senha</label>
+                    <input type="password" id="password" asp-for="user.Password" class="form-control" required>
                 </div>
 
                 <div class="mb-3">
-                    <label for="confirm-password" class="form-label">Confirmar Senha</label>
-                    <input type="password" id="confirm-password" name="confirm-password" class="form-control" required>
+                    <label asp-for="user.Password" class="form-label">Confirmar Senha</label>
+                    <input type="password" id="confirm-password" asp-for="user.Password" class="form-control" required>
                 </div>
 
                 <div class="text-center">
@@ -114,7 +114,7 @@
             </form>
 
             <div class="login-link">
-                <p>Já possui uma conta? <a href="/account/login">Faça login aqui</a></p>
+                <p>Jï¿½ possui uma conta? <a href="/account/login">Faï¿½a login aqui</a></p>
             </div>
         </div>
     </div>

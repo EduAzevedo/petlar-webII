@@ -12,5 +12,10 @@ namespace PetLar.Data
 
         public DbSet<User> Users { get; set; }
         public DbSet<Animal> Animals { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder builder){
+            builder.Entity<User>().ToTable("users");
+            builder.Entity<Animal>().ToTable("Animals");
+        }
     }
 }

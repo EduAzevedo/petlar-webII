@@ -1,0 +1,237 @@
+@page
+@{
+    ViewData["Title"] = "PetLar";
+
+    var availableAnimals = new List<dynamic>
+    {
+        new { Id = 1, Name = "Rex", Description = "Cachorro amigável e brincalhão", ImageUrl = "/images/animal-1.jpeg" },
+        new { Id = 2, Name = "Luna", Description = "Gata tranquila e carinhosa", ImageUrl = "/images/animal-3.jpeg" },
+        new { Id = 3, Name = "Bob", Description = "Gato atentado e comilão", ImageUrl = "/images/animal-3.jpeg" }
+    };
+
+    var partnerONGs = new List<dynamic>
+    {
+        new { Name = "Amigos dos Animais", Description = "ONG dedicada ao resgate e cuidado de animais abandonados." },
+        new { Name = "Patinhas Felizes", Description = "Trabalhamos para encontrar lares amorosos para animais de rua."},
+        new { Name = "Vida Animal", Description = "Promovemos o bem-estar animal através de campanhas de adoção e conscientização." }
+    };
+}
+
+<div class="hero">
+    <div class="hero-text">
+        <h1>Bem-vindo ao PetLar!</h1>
+    </div>
+</div>
+
+<div class="container">
+    <section class="available-animals-section">
+        <h2>Animais Disponíveis para Adoção</h2>
+        <p>Conheça nossos adoráveis animais esperando por um novo lar.</p>
+        <div class="animal-items">
+            @foreach (var animal in availableAnimals)
+            {
+                <div class="animal-item">
+                    <img src="@animal.ImageUrl" alt="Imagem de @animal.Name" class="animal-image" />
+                    <div class="animal-info">
+                        <h3>@animal.Name</h3>
+                        <p>@animal.Description</p>
+                        <a href="/AnimalDetails/@animal.Id" class="btn-view">Saiba Mais</a>
+                    </div>
+                </div>
+            }
+        </div>
+        <a href="/Animals" class="btn-secondary">Ver Todos os Animais</a>
+    </section>
+
+    <!-- Seção de ONGs Parceiras -->
+    <section class="partner-ongs-section">
+        <h2>Nossas ONGs Parceiras</h2>
+        <p>Conheça as ONGs que colaboram conosco para o resgate e adoção de animais.</p>
+        <div class="partner-items">
+            @foreach (var ong in partnerONGs)
+            {
+                <div class="partner-item">
+                    <h3>@ong.Name</h3>
+                    <p>@ong.Description</p>
+                    <a href="/" class="btn-visit">Ver Perfil</a>
+                </div>
+            }
+        </div>
+    </section>
+</div>
+
+<style>
+    a {
+        text-decoration: none;
+        color: #fff;
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 40px;
+    }
+
+    .hero {
+        background: url('/images/LandingPage.png') no-repeat center center/cover;
+        border-radius: 12px;
+        padding: 100px 20px;
+        text-align: center;
+        color: white;
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    .hero-text {
+        background: rgba(255, 255, 255, 0.1);
+        padding: 20px;
+        border-radius: 15px;
+        display: inline-block;
+    }
+
+    .hero h1 {
+        font-size: 3rem;
+        margin-bottom: 20px;
+    }
+
+    .hero p {
+        font-size: 1.5rem;
+    }
+
+    .btn-cta {
+        background-color: #ff6b6b;
+        padding: 15px 30px;
+        border-radius: 30px;
+        font-size: 1.2rem;
+        transition: background-color 0.3s ease;
+        display: inline-block;
+    }
+
+        .btn-cta:hover {
+            background-color: #ff5252;
+        }
+
+    .available-animals-section {
+        margin-top: 30px;
+    }
+
+    .animal-items {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 30px;
+    }
+
+    .animal-item {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        background-color: white;
+        border-radius: 16px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+        .animal-item:hover {
+            transform: scale(1.01);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+    .animal-image {
+        flex: 1;
+        width: 100%;
+        height: 20vh;
+        object-fit: cover;
+    }
+
+    .animal-info {
+        text-align: center;
+    }
+
+        .animal-info h3 {
+            font-size: 1.3rem;
+        }
+
+        .animal-info p {
+            font-size: 1rem;
+            color: #606060;
+        }
+
+    .btn-view {
+        display: inline-block;
+        width: 100%;
+        background-color: #FE7370;
+        padding: 10px;
+        font-size: 1rem;
+        font-weight: bold;
+        text-align: center;
+        transition: background-color 0.3s ease;
+        color: white;
+        border: none;
+        text-decoration: none;
+       
+    }
+
+        .btn-view:hover {
+            background-color: #fff;
+            color: #FE7370;
+        }
+
+
+    .partner-ongs-section {
+        margin-top: 50px;
+    }
+
+    .partner-items {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 30px;
+    }
+
+    .partner-item {
+        background-color: white;
+        border-radius: 16px;
+        padding: 20px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        transition: box-shadow 0.3s ease;
+    }
+
+        .partner-item:hover {
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+    .btn-visit {
+        background-color: #ff6b6b;
+        padding: 10px 20px;
+        border-radius: 20px;
+        font-size: 1rem;
+        transition: background-color 0.3s ease;
+    }
+
+        .btn-visit:hover {
+            background-color: #ff5252;
+        }
+
+    .btn-secondary {
+        display: block;
+        width: 25%;
+        margin: 20px auto;
+        padding: 10px;
+        background-color: #666666;
+        color: white;
+        text-align: center;
+        font-size: 1rem;
+        font-weight: bold;
+        border: none;
+        border-radius: 12px;
+        text-decoration: none;
+        transition: transform background-color 0.5s ease;
+    }
+
+        .btn-secondary:hover {
+            transform: scale(1.01);
+            background-color: #5b5b5b;
+
+        }
+
+</style>

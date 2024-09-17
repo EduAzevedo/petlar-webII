@@ -7,12 +7,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Pages\NovaPasta\**" />
     <Compile Remove="Pages\Shared\NovaPasta1\**" />
     <Compile Remove="Pages\Shared\NovaPasta\**" />
+    <Content Remove="Pages\NovaPasta\**" />
     <Content Remove="Pages\Shared\NovaPasta1\**" />
     <Content Remove="Pages\Shared\NovaPasta\**" />
+    <EmbeddedResource Remove="Pages\NovaPasta\**" />
     <EmbeddedResource Remove="Pages\Shared\NovaPasta1\**" />
     <EmbeddedResource Remove="Pages\Shared\NovaPasta\**" />
+    <None Remove="Pages\NovaPasta\**" />
     <None Remove="Pages\Shared\NovaPasta1\**" />
     <None Remove="Pages\Shared\NovaPasta\**" />
   </ItemGroup>
@@ -35,7 +39,7 @@
   <ItemGroup>
     <Folder Include="Models\" />
     <Folder Include="Data\" />
-    <Folder Include="Pages\NovaPasta\" />
+    <Folder Include="Pages\Home\" />
   </ItemGroup>
 
 </Project>

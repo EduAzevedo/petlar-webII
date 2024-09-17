@@ -15,7 +15,7 @@ namespace PetLar.Data
 
         protected override void OnModelCreating(ModelBuilder builder){
             builder.Entity<User>().ToTable("users");
-            builder.Entity<Animal>().ToTable("Animals");
+            builder.Entity<Animal>().ToTable("animals");
         }
     }
 }

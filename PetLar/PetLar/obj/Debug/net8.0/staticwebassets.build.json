@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "D4chskBOyl0p/JNN0YwIZWQ0TyjAyjza5MKG6Ga7ays=",
+  "Hash": "4zW8UG2W4IYmQJ/OfQEVxfQQVtaM59JlF0WIWvvjdes=",
   "Source": "PetLar",
   "BasePath": "_content/PetLar",
   "Mode": "Default",
@@ -338,6 +338,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\ong-4.png"
+    },
+    {
+      "Identity": "C:\\Users\\eduar\\Documents\\GitHub\\petlar-webII\\PetLar\\PetLar\\wwwroot\\images\\whatsapp-icon.png",
+      "SourceId": "PetLar",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\eduar\\Documents\\GitHub\\petlar-webII\\PetLar\\PetLar\\wwwroot\\",
+      "BasePath": "_content/PetLar",
+      "RelativePath": "images/whatsapp-icon.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\whatsapp-icon.png"
     },
     {
       "Identity": "C:\\Users\\eduar\\Documents\\GitHub\\petlar-webII\\PetLar\\PetLar\\wwwroot\\js\\site.js",

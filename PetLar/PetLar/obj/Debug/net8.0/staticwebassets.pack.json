@@ -65,6 +65,10 @@
       "PackagePath": "staticwebassets\\images\\ong-4.png"
     },
     {
+      "Id": "C:\\Users\\eduar\\Documents\\GitHub\\petlar-webII\\PetLar\\PetLar\\wwwroot\\images\\whatsapp-icon.png",
+      "PackagePath": "staticwebassets\\images\\whatsapp-icon.png"
+    },
+    {
       "Id": "C:\\Users\\eduar\\Documents\\GitHub\\petlar-webII\\PetLar\\PetLar\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },

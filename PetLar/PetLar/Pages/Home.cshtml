@@ -4,9 +4,9 @@
 
     var availableAnimals = new List<dynamic>
     {
-        new { Id = 1, Name = "Rex", Description = "Cachorro amigável e brincalhão", ImageUrl = "/images/animal-1.jpeg" },
-        new { Id = 2, Name = "Luna", Description = "Gata tranquila e carinhosa", ImageUrl = "/images/animal-3.jpeg" },
-        new { Id = 3, Name = "Bob", Description = "Gato atentado e comilão", ImageUrl = "/images/animal-3.jpeg" }
+        new { Id = 1, Name = "Rex", Species = "Cachorro", Breed = "Labrador", Age = 3, Description = "Cachorro amigável e brincalhão", IsAdopted = false, ImageUrl = "/images/animal-1.jpeg" },
+        new { Id = 2, Name = "Luna", Species = "Gato", Breed = "Siamês", Age = 2, Description = "Gata tranquila e carinhosa", IsAdopted = true, ImageUrl = "/images/animal-4.jpeg" },
+        new { Id = 3, Name = "Bob", Species = "Gato", Breed = "Persa", Age = 1, Description = "Gato atentado e comilão", IsAdopted = false, ImageUrl = "/images/animal-3.jpeg" }
     };
 
     var partnerONGs = new List<dynamic>
@@ -35,15 +35,16 @@
                     <div class="animal-info">
                         <h3>@animal.Name</h3>
                         <p>@animal.Description</p>
-                        <a href="/AnimalDetails/@animal.Id" class="btn-view">Saiba Mais</a>
+                        <a href="javascript:void(0);" class="btn-view" onclick="openModal(@animal.Id)">Saiba Mais</a>
                     </div>
                 </div>
             }
         </div>
-        <a href="/Animals" class="btn-secondary">Ver Todos os Animais</a>
+        <div class="btn-container">
+            <a href="/Animals" class="btn-secondary">Ver Todos os Animais</a>
+        </div>
     </section>
 
-    <!-- Seção de ONGs Parceiras -->
     <section class="partner-ongs-section">
         <h2>Nossas ONGs Parceiras</h2>
         <p>Conheça as ONGs que colaboram conosco para o resgate e adoção de animais.</p>
@@ -59,6 +60,67 @@
         </div>
     </section>
 </div>
+
+<div id="animalModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <img id="modalImage" src="" alt="Imagem do Animal" class="modal-image" />
+        </div>
+        <h3 id="modalName"></h3>
+            <p id="modalDescription"></p>
+        <div class="modal-body">
+            <div class="modal-body-item">
+
+            <p><strong>Raça:</strong> <span id="modalBreed"></span></p>
+            </div>
+            <div class="modal-body-item">
+            <p><strong>Idade:</strong> <span id="modalAge"></span></p>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <a href="#" id="whatsappLink" target="_blank" class="btn-whatsapp">
+                <img src="/images/whatsapp-icon.png" alt="WhatsApp" /> Contatar pelo WhatsApp
+            </a>
+        </div>
+    </div>
+</div>
+
+<script>
+    const animals = [
+        { id: 1, name: "Rex",  breed: "Labrador", age: 3, description: "Cachorro amigável e brincalhão", imageUrl: "/images/animal-1.jpeg" },
+        { id: 2, name: "Luna", breed: "Siamês", age: 2, description: "Gata tranquila e carinhosa", imageUrl: "/images/animal-4.jpeg" },
+        { id: 3, name: "Bob", breed: "Persa", age: 1, description: "Gato atentado e comilão", imageUrl: "/images/animal-3.jpeg" }
+    ];
+
+    function openModal(id) {
+        const animal = animals.find(animal => animal.id === id);
+
+        if (animal) {
+            document.getElementById('modalName').innerText = animal.name;
+           
+            document.getElementById('modalBreed').innerText = animal.breed;
+            document.getElementById('modalAge').innerText = animal.age + ' ano(s)';
+            document.getElementById('modalDescription').innerText = animal.description;
+            document.getElementById('modalImage').src = animal.imageUrl;
+
+            const whatsappLink = document.getElementById('whatsappLink');
+            whatsappLink.href = `https://wa.me/+5579999759461?text=Ol%C3%A1,%20me%20interessei%20pelo%20pet%20${encodeURIComponent(animal.name)},%20ainda%20est%C3%A1%20dispon%C3%ADvel%20para%20ado%C3%A7%C3%A3o?`;
+
+            document.getElementById('animalModal').style.display = 'block';
+        }
+    }
+
+    function closeModal() {
+        document.getElementById('animalModal').style.display = 'none';
+    }
+
+    window.onclick = function (event) {
+        const modal = document.getElementById('animalModal');
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+</script>
 
 <style>
     a {
@@ -93,10 +155,6 @@
         margin-bottom: 20px;
     }
 
-    .hero p {
-        font-size: 1.5rem;
-    }
-
     .btn-cta {
         background-color: #ff6b6b;
         padding: 15px 30px;
@@ -105,10 +163,6 @@
         transition: background-color 0.3s ease;
         display: inline-block;
     }
-
-        .btn-cta:hover {
-            background-color: #ff5252;
-        }
 
     .available-animals-section {
         margin-top: 30px;
@@ -137,7 +191,6 @@
         }
 
     .animal-image {
-        flex: 1;
         width: 100%;
         height: 20vh;
         object-fit: cover;
@@ -146,15 +199,6 @@
     .animal-info {
         text-align: center;
     }
-
-        .animal-info h3 {
-            font-size: 1.3rem;
-        }
-
-        .animal-info p {
-            font-size: 1rem;
-            color: #606060;
-        }
 
     .btn-view {
         display: inline-block;
@@ -167,8 +211,6 @@
         transition: background-color 0.3s ease;
         color: white;
         border: none;
-        text-decoration: none;
-       
     }
 
         .btn-view:hover {
@@ -176,6 +218,134 @@
             color: #FE7370;
         }
 
+    .btn-container {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px; 
+    }
+
+    .btn-secondary {
+        color: white;
+        padding: 10px 20px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-size: 1rem;
+        font-weight: bold;
+        transition: background-color 0.3s ease;
+        text-align: center;
+    }
+
+        .btn-secondary:hover {
+            background-color: #e05d5d;
+        }
+
+
+    .modal {
+        display: none;
+        align-content: center;
+        justify-content: center;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.8);
+        backdrop-filter: blur(5px);
+    }
+
+    .modal-content {
+        position: relative;
+        max-width: 500px;
+        width: 100%;
+        margin: auto;
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+        overflow: hidden;
+    }
+
+    .modal-content h3{
+            margin-top: 10px;
+            padding: 0px 20px;
+    }
+
+        .modal-content p {
+            padding: 0px 20px;
+        }
+
+    .modal-header {
+        padding: 0;
+        width: 100%;
+    }
+
+    .modal-image {
+        width: 100%;
+        max-height: 40vh;
+    }
+
+    .modal-body {
+        display: flex;
+        flex-direction: row;
+        gap: 20px;
+        text-align: center;
+        font-size: 18px;
+        padding: 8px;
+    }
+
+    .modal-body-item {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 150px;
+        height: 40px;
+        border-radius: 24px;
+        background-color: #FE7370;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+
+        .modal-body p {
+            color: #fff;
+            font-size: 16px;
+            text-align: center;
+            margin-top: 16px;
+        }
+
+    .modal-footer {
+        text-align: center; 
+        margin-top: 20px;
+        display: flex;
+        justify-content: center;
+    }
+
+
+    .btn-whatsapp {
+        background-color: #25d366;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 50px;
+        text-decoration: none;
+        font-size: 18px;
+        display: inline-flex;
+        align-items: center;
+        text-decoration: none;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transition: background-color 0.3s;
+    }
+
+    .btn-whatsapp img {
+        margin-right: 10px;
+        height: 24px;
+    }
+
+    .btn-whatsapp:hover {
+        background-color: #1ebe5d;
+            color: white;
+    }
+
+        .btn-whatsapp:focus {
+            outline: none; /* Remove o contorno padrão ao focar */
+        }
 
     .partner-ongs-section {
         margin-top: 50px;
@@ -183,55 +353,15 @@
 
     .partner-items {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
         gap: 30px;
     }
 
     .partner-item {
         background-color: white;
-        border-radius: 16px;
         padding: 20px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        text-align: center;
-        transition: box-shadow 0.3s ease;
-    }
-
-        .partner-item:hover {
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-        }
-
-    .btn-visit {
-        background-color: #ff6b6b;
-        padding: 10px 20px;
-        border-radius: 20px;
-        font-size: 1rem;
-        transition: background-color 0.3s ease;
-    }
-
-        .btn-visit:hover {
-            background-color: #ff5252;
-        }
-
-    .btn-secondary {
-        display: block;
-        width: 25%;
-        margin: 20px auto;
-        padding: 10px;
-        background-color: #666666;
-        color: white;
-        text-align: center;
-        font-size: 1rem;
-        font-weight: bold;
-        border: none;
         border-radius: 12px;
-        text-decoration: none;
-        transition: transform background-color 0.5s ease;
+        text-align: center;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     }
-
-        .btn-secondary:hover {
-            transform: scale(1.01);
-            background-color: #5b5b5b;
-
-        }
-
 </style>

@@ -1,0 +1,49 @@
+@page
+@model PetLar.Pages.Home.RegisterAnimal
+@{
+    ViewData["Title"] = "RegisterAnimal";
+}
+
+<h2>Cadastrar Novo Animal</h2>
+
+<form method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <label asp-for="Animal.Name" class="control-label"></label>
+        <input asp-for="Animal.Name" class="form-control" />
+        <span asp-validation-for="Animal.Name" class="text-danger"></span>
+    </div>
+    
+    <div class="form-group">
+        <label asp-for="Animal.Species" class="control-label"></label>
+        <input asp-for="Animal.Species" class="form-control" />
+        <span asp-validation-for="Animal.Species" class="text-danger"></span>
+    </div>
+    
+    <div class="form-group">
+        <label asp-for="Animal.Breed" class="control-label"></label>
+        <input asp-for="Animal.Breed" class="form-control" />
+        <span asp-validation-for="Animal.Breed" class="text-danger"></span>
+    </div>
+    
+    <div class="form-group">
+        <label asp-for="Animal.Age" class="control-label"></label>
+        <input asp-for="Animal.Age" class="form-control" />
+        <span asp-validation-for="Animal.Age" class="text-danger"></span>
+    </div>
+    
+    <div class="form-group">
+        <label asp-for="Animal.Description" class="control-label"></label>
+        <textarea asp-for="Animal.Description" class="form-control"></textarea>
+        <span asp-validation-for="Animal.Description" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label for="ImageUpload">Upload Imagem:</label>
+        <input type="file" id="ImageUpload" name="ImageUpload" />
+        <span asp-validation-for="Animal.ImagePath" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <input type="submit" value="Salvar" class="btn btn-primary" />
+    </div>
+</form>

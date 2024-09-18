@@ -1,13 +1,7 @@
 @page
+@model PetLar.Pages.Home.IndexModel
 @{
     ViewData["Title"] = "PetLar";
-
-    var availableAnimals = new List<dynamic>
-    {
-        new { Id = 1, Name = "Rex", Species = "Cachorro", Breed = "Labrador", Age = 3, Description = "Cachorro amigável e brincalhão", IsAdopted = false, ImageUrl = "/images/animal-1.jpeg" },
-        new { Id = 2, Name = "Luna", Species = "Gato", Breed = "Siamês", Age = 2, Description = "Gata tranquila e carinhosa", IsAdopted = true, ImageUrl = "/images/animal-4.jpeg" },
-        new { Id = 3, Name = "Bob", Species = "Gato", Breed = "Persa", Age = 1, Description = "Gato atentado e comilão", IsAdopted = false, ImageUrl = "/images/animal-3.jpeg" }
-    };
 
     var partnerONGs = new List<dynamic>
     {
@@ -28,14 +22,20 @@
         <h2>Animais Disponíveis para Adoção</h2>
         <p>Conheça nossos adoráveis animais esperando por um novo lar.</p>
         <div class="animal-items">
-            @foreach (var animal in availableAnimals)
+            @foreach (var animal in Model.Animais)
             {
                 <div class="animal-item">
-                    <img src="@animal.ImageUrl" alt="Imagem de @animal.Name" class="animal-image" />
+                    <img src="@animal.ImagePath" alt="Imagem de @animal.Name" class="animal-image" />
                     <div class="animal-info">
                         <h3>@animal.Name</h3>
                         <p>@animal.Description</p>
-                        <a href="javascript:void(0);" class="btn-view" onclick="openModal(@animal.Id)">Saiba Mais</a>
+                        <a href="javascript:void(0);" class="btn-view" 
+                   data-name="@animal.Name"
+                   data-breed="@animal.Breed"
+                   data-age="@animal.Age"
+                   data-description="@animal.Description"
+                   data-image-url="@animal.ImagePath"
+                   onclick="openModal(this)">Saiba Mais</a>
                     </div>
                 </div>
             }
@@ -86,28 +86,24 @@
 </div>
 
 <script>
-    const animals = [
-        { id: 1, name: "Rex",  breed: "Labrador", age: 3, description: "Cachorro amigável e brincalhão", imageUrl: "/images/animal-1.jpeg" },
-        { id: 2, name: "Luna", breed: "Siamês", age: 2, description: "Gata tranquila e carinhosa", imageUrl: "/images/animal-4.jpeg" },
-        { id: 3, name: "Bob", breed: "Persa", age: 1, description: "Gato atentado e comilão", imageUrl: "/images/animal-3.jpeg" }
-    ];
+    function openModal(element) {
+        
+        var name = element.getAttribute('data-name');
+        var breed = element.getAttribute('data-breed');
+        var age = element.getAttribute('data-age');
+        var description = element.getAttribute('data-description');
+        var imageUrl = element.getAttribute('data-image-url');
 
-    function openModal(id) {
-        const animal = animals.find(animal => animal.id === id);
+        document.getElementById('modalName').innerText = name;
+        document.getElementById('modalBreed').innerText = breed;
+        document.getElementById('modalAge').innerText = age + ' ano(s)';
+        document.getElementById('modalDescription').innerText = description;
+        document.getElementById('modalImage').src = imageUrl;
 
-        if (animal) {
-            document.getElementById('modalName').innerText = animal.name;
-           
-            document.getElementById('modalBreed').innerText = animal.breed;
-            document.getElementById('modalAge').innerText = animal.age + ' ano(s)';
-            document.getElementById('modalDescription').innerText = animal.description;
-            document.getElementById('modalImage').src = animal.imageUrl;
+        var whatsappLink = document.getElementById('whatsappLink');
+        whatsappLink.href = `https://wa.me/+5579999759461?text=Ol%C3%A1,%20me%20interessei%20pelo%20pet%20${encodeURIComponent(name)},%20ainda%20est%C3%A1%20dispon%C3%ADvel%20para%20ado%C3%A7%C3%A3o?`;
 
-            const whatsappLink = document.getElementById('whatsappLink');
-            whatsappLink.href = `https://wa.me/+5579999759461?text=Ol%C3%A1,%20me%20interessei%20pelo%20pet%20${encodeURIComponent(animal.name)},%20ainda%20est%C3%A1%20dispon%C3%ADvel%20para%20ado%C3%A7%C3%A3o?`;
-
-            document.getElementById('animalModal').style.display = 'block';
-        }
+        document.getElementById('animalModal').style.display = 'block';
     }
 
     function closeModal() {

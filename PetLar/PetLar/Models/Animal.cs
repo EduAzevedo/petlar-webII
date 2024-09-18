@@ -22,5 +22,6 @@ namespace PetLar.Models
         public bool IsAdopted { get; set; }
 
         public int ShelterId { get; set; }
+        public string? ImagePath { get; set; }
     }
 }

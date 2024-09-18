@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PetLar")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+47cf98230ba07b5f8b11d2a68efb6e06644b69e4")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+084a53a7ab3631026ac722325f4d1a316ae58595")]
 [assembly: System.Reflection.AssemblyProductAttribute("PetLar")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PetLar")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

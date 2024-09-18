@@ -26,8 +26,12 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/marco/OneDrive/Documentos/projetos c\#/projeto web2 C\#/petlar-webII/PetLar/PetLar/Pages/Home.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSG9tZS5jc2h0bWw=
+[C:/Users/marco/OneDrive/Documentos/projetos c\#/projeto web2 C\#/petlar-webII/PetLar/PetLar/Pages/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSG9tZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/marco/OneDrive/Documentos/projetos c\#/projeto web2 C\#/petlar-webII/PetLar/PetLar/Pages/Home/RegisterAnimal.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSG9tZVxSZWdpc3RlckFuaW1hbC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/marco/OneDrive/Documentos/projetos c\#/projeto web2 C\#/petlar-webII/PetLar/PetLar/Pages/Index.cshtml]

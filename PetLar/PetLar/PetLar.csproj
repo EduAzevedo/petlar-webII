@@ -6,7 +6,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
-  <ItemGroup>
+  <!-- <ItemGroup>
     <Compile Remove="Pages\NovaPasta\**" />
     <Compile Remove="Pages\Shared\NovaPasta1\**" />
     <Compile Remove="Pages\Shared\NovaPasta\**" />
@@ -19,7 +19,7 @@
     <None Remove="Pages\NovaPasta\**" />
     <None Remove="Pages\Shared\NovaPasta1\**" />
     <None Remove="Pages\Shared\NovaPasta\**" />
-  </ItemGroup>
+  </ItemGroup> -->
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="8.0.8" />
@@ -36,10 +36,10 @@
     <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="8.0.2" />
   </ItemGroup>
 
-  <ItemGroup>
+  <!-- <ItemGroup>
     <Folder Include="Models\" />
     <Folder Include="Data\" />
     <Folder Include="Pages\Home\" />
-  </ItemGroup>
+  </ItemGroup> -->
 
 </Project>

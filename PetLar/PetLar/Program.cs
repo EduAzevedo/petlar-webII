@@ -26,7 +26,8 @@ if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Error");
     app.UseHsts();
-}else
+}
+else
 {
     app.UseDeveloperExceptionPage();
     app.UseMigrationsEndPoint();

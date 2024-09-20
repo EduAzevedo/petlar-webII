@@ -14,10 +14,9 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PetLar")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1f95c6880d8673651b819dd3d881bcbd914fd81b")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+084a53a7ab3631026ac722325f4d1a316ae585")]
 [assembly: System.Reflection.AssemblyProductAttribute("PetLar")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PetLar")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
 
 // Gerado pela classe WriteCodeFragment do MSBuild.
-

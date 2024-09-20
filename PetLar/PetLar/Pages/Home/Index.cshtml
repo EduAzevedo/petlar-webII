@@ -41,7 +41,7 @@
             }
         </div>
         <div class="btn-container">
-            <a href="/Animals" class="btn-secondary">Ver Todos os Animais</a>
+            <a href="/Animals/Animals" class="btn-secondary">Ver Todos os Animais</a>
         </div>
     </section>
 
@@ -52,9 +52,9 @@
             @foreach (var ong in partnerONGs)
             {
                 <div class="partner-item">
+                    <img src="/images/ong-2.png" alt="@ong.Name" class="partner-image" />
                     <h3>@ong.Name</h3>
-                    <p>@ong.Description</p>
-                    <a href="/" class="btn-visit">Ver Perfil</a>
+                    <a href="/Ong/OngProfile" class="btn-visit">Ver Perfil</a>
                 </div>
             }
         </div>
@@ -164,13 +164,17 @@
         margin-top: 30px;
     }
 
-    .animal-items {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 30px;
-    }
+.animal-items {
+    display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(min-content, 350px));
+    gap: 30px;
+    justify-content: center;
+}
 
     .animal-item {
+         max-width: 300px;
+         min-width: 300px;
+        margin: 0 auto; 
         display: flex;
         flex-direction: column;
         justify-content: space-between;
@@ -340,24 +344,63 @@
     }
 
         .btn-whatsapp:focus {
-            outline: none; /* Remove o contorno padrão ao focar */
+            outline: none;
         }
 
     .partner-ongs-section {
-        margin-top: 50px;
+        padding: 20px;
+        background-color: #f9f9f9;
     }
 
     .partner-items {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 30px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
     }
 
     .partner-item {
-        background-color: white;
-        padding: 20px;
-        border-radius: 12px;
-        text-align: center;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        width: 250px;
+        height: 400px;
+        background: white;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 15px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s;
+        display: flex;
+        flex-direction: column; 
+        justify-content: space-between;
     }
+
+        .partner-item:hover {
+            transform: scale(1.05);
+        }
+
+    .partner-image {
+        width: 100%;
+        height: auto;
+        border-radius: 8px 8px 0 0;
+    }
+
+    .btn-visit {
+        display: inline-block;
+        background-color: #FE7370;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-size: 1rem;
+        font-weight: bold;
+        text-align: center;
+        width: 100%;
+        box-sizing: border-box;
+        transition: background-color 0.3s ease;
+    }
+
+        .btn-visit:hover {
+         
+            color: white; 
+            border: none; 
+        }
+
 </style>

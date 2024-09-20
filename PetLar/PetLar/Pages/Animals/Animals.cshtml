@@ -1,0 +1,354 @@
+﻿@page
+@model PetLar.Pages.Animals.AnimalsModel
+@{
+    ViewData["Title"] = "Todos os Animais";
+}
+
+
+
+<div class="search-filters">
+    <h2 class="page-title">Pets disponíveis</h2>
+    <div class="search-container">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="searchInput" placeholder="Buscar por nome..." onkeyup="filterAnimals()" class="search-input" />
+    </div>
+
+    <div class="filter-dropdowns">
+        <select id="speciesFilter" onchange="filterAnimals()" class="filter-select">
+            <option value="">Todas as Espécies</option>
+            <option value="Cão">Cão</option>
+            <option value="Gato">Gato</option>
+            <option value="Pássaro">Pássaro</option>
+        </select>
+
+       
+    </div>
+</div>
+
+<div class="animal-items">
+    @foreach (var animal in Model.Animais)
+    {
+        <div class="animal-item" tabindex="0">
+            <img src="@animal.ImagePath" alt="Imagem de @animal.Name" class="animal-image" />
+            <div class="animal-info">
+                <h3>@animal.Name</h3>
+                <p class="animal-description">@animal.Description</p>
+                <a href="javascript:void(0);" class="btn-view"
+                   data-name="@animal.Name"
+                   data-breed="@animal.Breed"
+                   data-age="@animal.Age"
+                   data-description="@animal.Description"
+                   data-image-url="@animal.ImagePath"
+                   onclick="openModal(this)">Saiba Mais</a>
+            </div>
+        </div>
+    }
+</div>
+
+<div id="animalModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <img id="modalImage" src="" alt="Imagem do Animal" class="modal-image" />
+        </div>
+        <h3 id="modalName"></h3>
+        <p id="modalDescription"></p>
+        <div class="modal-body">
+            <div class="modal-body-item">
+                <p><strong>Raça:</strong> <span id="modalBreed"></span></p>
+            </div>
+            <div class="modal-body-item">
+                <p><strong>Idade:</strong> <span id="modalAge"></span></p>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <a href="#" id="whatsappLink" target="_blank" class="btn-whatsapp">
+                <img src="/images/whatsapp-icon.png" alt="WhatsApp" /> Contatar pelo WhatsApp
+            </a>
+        </div>
+    </div>
+</div>
+
+<script>
+    function openModal(element) {
+        var name = element.getAttribute('data-name');
+        var breed = element.getAttribute('data-breed');
+        var age = element.getAttribute('data-age');
+        var description = element.getAttribute('data-description');
+        var imageUrl = element.getAttribute('data-image-url');
+
+        document.getElementById('modalName').innerText = name;
+        document.getElementById('modalBreed').innerText = breed;
+        document.getElementById('modalAge').innerText = age + ' ano(s)';
+        document.getElementById('modalDescription').innerText = description;
+        document.getElementById('modalImage').src = imageUrl;
+
+        var whatsappLink = document.getElementById('whatsappLink');
+        whatsappLink.href = `https://wa.me/+5579999759461?text=Ol%C3%A1,%20me%20interessei%20pelo%20pet%20${encodeURIComponent(name)},%20ainda%20est%C3%A1%20dispon%C3%ADvel%20para%20ado%C3%A7%C3%A3o?`;
+
+        document.getElementById('animalModal').style.display = 'block';
+    }
+
+    function closeModal() {
+        document.getElementById('animalModal').style.display = 'none';
+    }
+
+    window.onclick = function (event) {
+        const modal = document.getElementById('animalModal');
+        if (event.target == modal) {
+            closeModal();
+        }
+    }
+</script>
+
+
+@section Scripts {
+    <script>
+        function filterAnimals() {
+            const searchInput = document.getElementById('searchInput').value.toLowerCase();
+            const speciesFilter = document.getElementById('speciesFilter').value.toLowerCase();
+            const animalItems = document.querySelectorAll('.animal-item');
+
+            if (searchInput.length < 3) {
+                animalItems.forEach(item => {
+                    item.style.display = 'block';
+                });
+                return;
+            }
+
+            animalItems.forEach(item => {
+                const name = item.querySelector('h3').innerText.toLowerCase();
+                const species = item.querySelector('p:nth-of-type(1)').innerText.toLowerCase();
+
+                const matchesSearch = name.includes(searchInput);
+                const matchesSpecies = speciesFilter === '' || species.includes(speciesFilter);
+
+                item.style.display = matchesSearch && matchesSpecies ? 'block' : 'none';
+            });
+        }
+
+
+    </script>
+}
+
+<style>
+    body {
+        font-family: 'Arial', sans-serif;
+        background-color: #f9f9f9;
+        margin: 0;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .page-title {
+        margin-bottom: 20px;
+        font-size: 2rem;
+        color: #333;
+    }
+
+    .search-filters {
+        margin-bottom: 30px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .search-container {
+        position: relative;
+        width: 600px;
+    }
+
+    .search-icon {
+        position: absolute;
+        left: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        pointer-events: none;
+    }
+
+    .search-input {
+        width: 100%;
+        padding: 12px 12px 12px 40px;
+        border-radius: 12px;
+        border: 1px solid #ddd;
+    }
+
+    .filter-dropdowns {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+    }
+
+    .filter-select {
+        padding: 12px;
+        border-radius: 5px;
+        border: 1px solid #ddd;
+        width: 200px;
+    }
+
+    .animal-items {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(min-content, 350px));
+        justify-content: center;
+    }
+
+    .animal-item {
+        width: 300px;
+        width: 300px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        background-color: white;
+        border-radius: 16px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+        .animal-item:hover {
+            transform: scale(1.01);
+        }
+
+    .animal-image {
+        width: 100%;
+        height: 60%;
+        object-fit: cover;
+    }
+
+    .animal-info {
+        text-align: center;
+        padding: 10px;
+    }
+
+    .btn-view {
+        display: inline-block;
+        width: 100%;
+        background-color: #FE7370;
+        padding: 10px;
+        font-size: 1rem;
+        font-weight: bold;
+        text-align: center;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+        text-decoration: none;
+    }
+
+
+        .btn-view:hover {
+            background-color: #fff;
+            color: #FE7370;
+        }
+
+    .modal {
+        display: none;
+        align-content: center;
+        justify-content: center;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.8);
+        backdrop-filter: blur(5px);
+    }
+
+    .modal-content {
+        position: relative;
+        max-width: 500px;
+        width: 100%;
+        margin: auto;
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+        overflow: hidden;
+    }
+
+        .modal-content h3 {
+            margin-top: 10px;
+            padding: 0px 20px;
+        }
+
+        .modal-content p {
+            padding: 0px 20px;
+        }
+
+    .modal-header {
+        padding: 0;
+        width: 100%;
+    }
+
+    .modal-image {
+        width: 100%;
+        max-height: 40vh;
+    }
+
+    .modal-body {
+        display: flex;
+        flex-direction: row;
+        gap: 20px;
+        text-align: center;
+        font-size: 18px;
+        padding: 8px;
+    }
+
+    .modal-body-item {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 150px;
+        height: 40px;
+        border-radius: 24px;
+        background-color: #FE7370;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+
+    .modal-body p {
+        color: #fff;
+        font-size: 16px;
+        text-align: center;
+        margin-top: 16px;
+    }
+
+    .modal-footer {
+        text-align: center;
+        margin-top: 20px;
+        display: flex;
+        justify-content: center;
+    }
+
+
+    .btn-whatsapp {
+        background-color: #25d366;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 50px;
+        text-decoration: none;
+        font-size: 18px;
+        display: inline-flex;
+        align-items: center;
+        text-decoration: none;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transition: background-color 0.3s;
+    }
+
+        .btn-whatsapp img {
+            margin-right: 10px;
+            height: 24px;
+        }
+
+        .btn-whatsapp:hover {
+            background-color: #1ebe5d;
+            color: white;
+        }
+
+        .btn-whatsapp:focus {
+            outline: none;
+        }
+
+</style>

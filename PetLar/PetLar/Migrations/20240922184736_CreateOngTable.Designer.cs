@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PetLar.Data;
 
@@ -10,9 +11,11 @@ using PetLar.Data;
 namespace PetLar.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240922184736_CreateOngTable")]
+    partial class CreateOngTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -67,7 +70,7 @@ namespace PetLar.Migrations
                     b.ToTable("Animals");
                 });
 
-            modelBuilder.Entity("PetLar.Models.OngModels.Ong", b =>
+            modelBuilder.Entity("PetLar.Models.Ong", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -83,15 +86,7 @@ namespace PetLar.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ImagePath")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Phone")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -126,6 +121,10 @@ namespace PetLar.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("UserName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
                     b.ToTable("Users");
@@ -133,7 +132,7 @@ namespace PetLar.Migrations
 
             modelBuilder.Entity("PetLar.Models.Animal", b =>
                 {
-                    b.HasOne("PetLar.Models.OngModels.Ong", "Ong")
+                    b.HasOne("PetLar.Models.Ong", "Ong")
                         .WithMany("Animals")
                         .HasForeignKey("OngId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -142,18 +141,18 @@ namespace PetLar.Migrations
                     b.Navigation("Ong");
                 });
 
-            modelBuilder.Entity("PetLar.Models.OngModels.Ong", b =>
+            modelBuilder.Entity("PetLar.Models.Ong", b =>
                 {
                     b.HasOne("PetLar.Models.User", "User")
                         .WithOne("Ong")
-                        .HasForeignKey("PetLar.Models.OngModels.Ong", "UserId")
+                        .HasForeignKey("PetLar.Models.Ong", "UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("PetLar.Models.OngModels.Ong", b =>
+            modelBuilder.Entity("PetLar.Models.Ong", b =>
                 {
                     b.Navigation("Animals");
                 });

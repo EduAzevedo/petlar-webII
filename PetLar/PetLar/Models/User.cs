@@ -1,6 +1,8 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.AspNetCore.Identity;
+using PetLar.Models.OngModels;
 
 namespace PetLar.Models
 {
@@ -8,16 +10,12 @@ namespace PetLar.Models
     {
 
         public int Id { get; set; }
+        public string Email { get; set; }
+        public string Password { get; set; }
 
-        [Required]
-        public string UserName { get; set; } = string.Empty;
+        public string Role { get; set; }
 
-        [Required]
-        public string Email { get; set; } = string.Empty;
-
-        [Required]
-        public string Password { get; set; } = string.Empty;
-
-        public string Role { get; set; } = string.Empty;
+        // Relacionamento 1 para 1 com Ong
+        public Ong Ong { get; set; }
     }
 }

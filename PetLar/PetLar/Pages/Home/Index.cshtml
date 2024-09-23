@@ -35,6 +35,7 @@
                    data-age="@animal.Age"
                    data-description="@animal.Description"
                    data-image-url="@animal.ImagePath"
+                   data-phone="@animal.Ong.Phone"
                    onclick="openModal(this)">Saiba Mais</a>
                     </div>
                 </div>
@@ -45,7 +46,7 @@
         </div>
     </section>
 
-    <section class="partner-ongs-section">
+    @* <section class="partner-ongs-section">
         <h2>Nossas ONGs Parceiras</h2>
         <p>Conheça as ONGs que colaboram conosco para o resgate e adoção de animais.</p>
         <div class="partner-items">
@@ -58,7 +59,7 @@
                 </div>
             }
         </div>
-    </section>
+    </section> *@
 </div>
 
 <div id="animalModal" class="modal">
@@ -93,6 +94,7 @@
         var age = element.getAttribute('data-age');
         var description = element.getAttribute('data-description');
         var imageUrl = element.getAttribute('data-image-url');
+        var phone = element.getAttribute('data-phone');
 
         document.getElementById('modalName').innerText = name;
         document.getElementById('modalBreed').innerText = breed;
@@ -101,7 +103,7 @@
         document.getElementById('modalImage').src = imageUrl;
 
         var whatsappLink = document.getElementById('whatsappLink');
-        whatsappLink.href = `https://wa.me/+5579999759461?text=Ol%C3%A1,%20me%20interessei%20pelo%20pet%20${encodeURIComponent(name)},%20ainda%20est%C3%A1%20dispon%C3%ADvel%20para%20ado%C3%A7%C3%A3o?`;
+        whatsappLink.href = `https://wa.me/${phone}?text=Ol%C3%A1,%20me%20interessei%20pelo%20pet%20${encodeURIComponent(name)},%20ainda%20est%C3%A1%20dispon%C3%ADvel%20para%20ado%C3%A7%C3%A3o?`;
 
         document.getElementById('animalModal').style.display = 'block';
     }

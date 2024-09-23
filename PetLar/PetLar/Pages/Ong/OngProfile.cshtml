@@ -1,28 +1,40 @@
 @page
-@model OngProfileModel
+@model PetLar.Pages.OngPages.OngProfileModel
 
 <!DOCTYPE html>
 <html lang="pt">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perfil da ONG</title>
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
+
 <body>
+    @if (User.Identity.IsAuthenticated)
+    {
+        @* using PetLar.Pages.OngPages.OngProfileModel; *@
+        <form method="post" asp-page="/Ong/Logout">
+            <button type="submit" class="btn btn-danger">Logout</button>
+        </form>
+        <a asp-page="/Account/Register" asp-route-id="@Model.ong.Id"
+                                    style="background-color: #FE7370;">Editar Pefil</a>
+    }
+
     <div class="container">
         <section class="ong-profile-section">
             <div class="ong-header">
-                <img src="/images/ong-1.png" alt="Imagem de perfil da ONG" class="ong-profile-image" />
+                <img src="@Model.ong.ImagePath" alt="Imagem de perfil da ONG" class="ong-profile-image" />
                 <div class="ong-info">
-                    <h1>Nome da ONG</h1>
+                    <h1>@Model.ong.Name</h1>
                 </div>
             </div>
         </section>
 
         <section class="available-animals-section">
-            <h2>Animais Disponíveis para Adoção</h2>
-            <p>Conheça nossos adoráveis animais esperando por um novo lar.</p>
+            <h2>Animais Disponï¿½veis para Adoï¿½ï¿½o</h2>
+            <p>@Model.ong.Description</p>
             <div class="animal-items">
                 @foreach (var animal in Model.AvailableAnimals)
                 {
@@ -31,23 +43,37 @@
                         <div class="animal-info">
                             <h3>@animal.Name</h3>
                             <p>@animal.Description</p>
-                            <a href="javascript:void(0);" class="btn-view"
-                               data-name="@animal.Name"
-                               data-breed="@animal.Breed"
-                               data-age="@animal.Age"
-                               data-description="@animal.Description"
-                               data-image-url="@animal.ImagePath"
-                               onclick="openModal(this)">Saiba Mais</a>
+
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <a asp-page="/Home/RegisterAnimal" asp-route-id="@animal.Id"
+                                    style="background-color: #FE7370;">Editar Animal</a>
+                                <form method="post" asp-page-handler="Delete" asp-route-id="@animal.Id"
+                                    onsubmit="return confirm('Tem certeza que deseja apagar este animal?');">
+                                    <button type="submit" class="btn btn-danger">Apagar</button>
+                                </form>
+                            }
+                            else
+                            {
+
+                                <a href="javascript:void(0);" class="btn-view" data-name="@animal.Name"
+                                    data-breed="@animal.Breed" data-age="@animal.Age" data-description="@animal.Description"
+                                    data-image-url="@animal.ImagePath" onclick="openModal(this)">Saiba Mais</a>
+                            }
                         </div>
                     </div>
                 }
             </div>
 
-            <div class="btn-container">
-                <a href="/Home/RegisterAnimal" class="btn-secondary" style="background-color: #FE7370;">
-                    Adicionar Animal
-                </a>
-            </div>
+
+            @if (User.Identity.IsAuthenticated)
+            {
+                <div class="btn-container">
+                    <a href="/Home/RegisterAnimal" class="btn-secondary" style="background-color: #FE7370;">
+                        Adicionar Animal
+                    </a>
+                </div>
+            }
         </section>
     </div>
 
@@ -60,7 +86,7 @@
             <p id="modalDescription"></p>
             <div class="modal-body">
                 <div class="modal-body-item">
-                    <p><strong>Raça:</strong> <span id="modalBreed"></span></p>
+                    <p><strong>Raï¿½a:</strong> <span id="modalBreed"></span></p>
                 </div>
                 <div class="modal-body-item">
                     <p><strong>Idade:</strong> <span id="modalAge"></span></p>
@@ -145,9 +171,9 @@
             margin-top: 30px;
         }
 
-            .available-animals-section h2 {
-                font-size: 1.6rem;
-            }
+        .available-animals-section h2 {
+            font-size: 1.6rem;
+        }
 
         .animal-items {
             display: grid;
@@ -166,10 +192,10 @@
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
-            .animal-item:hover {
-                transform: scale(1.01);
-                box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-            }
+        .animal-item:hover {
+            transform: scale(1.01);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
 
         .animal-image {
             width: 100%;
@@ -194,10 +220,10 @@
             border: none;
         }
 
-            .btn-view:hover {
-                background-color: #fff;
-                color: #FE7370;
-            }
+        .btn-view:hover {
+            background-color: #fff;
+            color: #FE7370;
+        }
 
         .btn-container {
             display: flex;
@@ -216,9 +242,9 @@
             text-align: center;
         }
 
-            .btn-secondary:hover {
-                background-color: #e05d5d;
-            }
+        .btn-secondary:hover {
+            background-color: #e05d5d;
+        }
 
         .modal {
             display: none;
@@ -241,18 +267,18 @@
             margin: auto;
             background-color: white;
             border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
             overflow: hidden;
         }
 
-            .modal-content h3 {
-                margin-top: 10px;
-                padding: 0px 20px;
-            }
+        .modal-content h3 {
+            margin-top: 10px;
+            padding: 0px 20px;
+        }
 
-            .modal-content p {
-                padding: 0px 20px;
-            }
+        .modal-content p {
+            padding: 0px 20px;
+        }
 
         .modal-header {
             padding: 0;
@@ -281,7 +307,7 @@
             height: 40px;
             border-radius: 24px;
             background-color: #FE7370;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
 
         .modal-body p {
@@ -313,19 +339,20 @@
             transition: background-color 0.3s;
         }
 
-            .btn-whatsapp img {
-                margin-right: 10px;
-                height: 24px;
-            }
+        .btn-whatsapp img {
+            margin-right: 10px;
+            height: 24px;
+        }
 
-            .btn-whatsapp:hover {
-                background-color: #1ebe5d;
-                color: white;
-            }
+        .btn-whatsapp:hover {
+            background-color: #1ebe5d;
+            color: white;
+        }
 
-            .btn-whatsapp:focus {
-                outline: none;
-            }
+        .btn-whatsapp:focus {
+            outline: none;
+        }
     </style>
 </body>
+
 </html>

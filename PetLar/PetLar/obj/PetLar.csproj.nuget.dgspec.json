@@ -1,28 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\eduar\\Documents\\GitHub\\petlar-webII\\PetLar\\PetLar\\PetLar.csproj": {}
+    "C:\\Users\\marco\\OneDrive\\Documentos\\projetos c#\\projeto web2 C#\\petlar-webII\\PetLar\\PetLar\\PetLar.csproj": {}
   },
   "projects": {
-    "C:\\Users\\eduar\\Documents\\GitHub\\petlar-webII\\PetLar\\PetLar\\PetLar.csproj": {
+    "C:\\Users\\marco\\OneDrive\\Documentos\\projetos c#\\projeto web2 C#\\petlar-webII\\PetLar\\PetLar\\PetLar.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\eduar\\Documents\\GitHub\\petlar-webII\\PetLar\\PetLar\\PetLar.csproj",
+        "projectUniqueName": "C:\\Users\\marco\\OneDrive\\Documentos\\projetos c#\\projeto web2 C#\\petlar-webII\\PetLar\\PetLar\\PetLar.csproj",
         "projectName": "PetLar",
-        "projectPath": "C:\\Users\\eduar\\Documents\\GitHub\\petlar-webII\\PetLar\\PetLar\\PetLar.csproj",
-        "packagesPath": "C:\\Users\\eduar\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\eduar\\Documents\\GitHub\\petlar-webII\\PetLar\\PetLar\\obj\\",
+        "projectPath": "C:\\Users\\marco\\OneDrive\\Documentos\\projetos c#\\projeto web2 C#\\petlar-webII\\PetLar\\PetLar\\PetLar.csproj",
+        "packagesPath": "C:\\Users\\marco\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\marco\\OneDrive\\Documentos\\projetos c#\\projeto web2 C#\\petlar-webII\\PetLar\\PetLar\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\eduar\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\marco\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -94,7 +91,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.203/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

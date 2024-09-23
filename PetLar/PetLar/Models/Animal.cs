@@ -1,5 +1,6 @@
 using System;
 using System.ComponentModel.DataAnnotations;
+using PetLar.Models.OngModels;
 
 namespace PetLar.Models
 {
@@ -23,5 +24,10 @@ namespace PetLar.Models
 
         public int ShelterId { get; set; }
         public string? ImagePath { get; set; }
+
+
+        // Relacionamento com Ong
+        public int OngId { get; set; }
+        public Ong Ong { get; set; }
     }
 }
